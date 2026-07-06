@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isotope Decay Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>☢️ Isotope Decay Simulator</h1>
+            <p>Visualizing half-lives and radioactive decay in real-time</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- Left Side: Controls -->
+            <div class="controls-panel">
+                <h3>1. Select An Isotope</h3>
+                <div class="preset-buttons">
+                    <button onclick="setPreset('Tc-99m', 6)">Tc-99m (6h)</button>
+                    <button onclick="setPreset('F-18', 1.83)">F-18 (1.83h)</button>
+                    <button onclick="setPreset('I-131', 192)">I-131 (8 days)</button>
+                </div>
+
+                <div class="input-group">
+                    <label>Custom Half-Life (Hours):</label>
+                    <input type="number" id="halfLifeInput" value="6" min="0.1" step="0.1" oninput="calculateDecay()">
+                </div>
+
+                <h3>2. Pass Time</h3>
+                <div class="slider-container">
+                    <label>Hours Elapsed: <span id="hoursDisplay">0</span> hrs</label>
+                    <input type="range" id="timeSlider" min="0" max="24" value="0" step="0.1" oninput="calculateDecay()">
+                </div>
+
+                <div class="results-box">
+                    <div class="result-stat">
+                        <span class="stat-label">Remaining Activity:</span>
+                        <span class="stat-value" id="percentageDisplay">100%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: The Visual Grid -->
+            <div class="visual-panel">
+                <h3>Atomic Visualizer (100 Atoms)</h3>
+                <p>Watch the atoms change from Active (<span class="legend-active">●</span>) to Decayed (<span class="legend-decayed">●</span>)</p>
+                <div class="atoms-grid" id="atomsGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
